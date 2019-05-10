@@ -1,5 +1,5 @@
 
-public class StateManager extends State{
+public class StateManager {
 	MyCanvas canvas;
 	State state;
 

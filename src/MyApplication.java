@@ -31,11 +31,11 @@ public class MyApplication extends JFrame
 		OvalButton ovalButton = new OvalButton(stateManager);
 		jp.add(ovalButton);
 
-		//HendButton hendButton = new HendButton(stateManager);
-		//jp.add(hendButton);
+		HendButton hendButton = new HendButton(stateManager);
+		jp.add(hendButton);
 
-		//ArcButton arcButton = new ArcButton(stateManager);
-		//jp.add(arcButton);
+		ArcButton arcButton = new ArcButton(stateManager);
+		jp.add(arcButton);
 
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(jp, BorderLayout.NORTH);
