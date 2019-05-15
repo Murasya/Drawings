@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -44,6 +45,17 @@ public class MyApplication extends JFrame
 		canvas.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				stateManager.mouseDown(e.getX(), e.getY());
+				canvas.repaint();
+			}
+			public void mouseReleased(MouseEvent e) {
+				stateManager.mouseUp(e.getX(), e.getY());
+				canvas.repaint();
+			}
+		});
+
+		canvas.addMouseMotionListener(new MouseMotionAdapter() {
+			public void mouseDragged(MouseEvent e) {
+				stateManager.mouseDrag(e.getX(), e.getY());
 				canvas.repaint();
 			}
 		});

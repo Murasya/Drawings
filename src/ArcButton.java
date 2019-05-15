@@ -20,16 +20,25 @@ public class ArcButton extends JButton {
 
 	class ArcState implements State {
 		StateManager stateManager;
+		private int x1, y1;
+		MyArc myArc;
 
 		public ArcState(StateManager stateManager) {
 			this.stateManager = stateManager;
 		}
 
 		public void mouseDown(int x, int y) {
-			stateManager.addDrawing(new MyArc(x, y));
+			stateManager.addDrawing(myArc = new MyArc(x, y, 0, 0));
+			x1 = x;
+			y1 = y;
 		}
 
-		public void mouseUp(int x, int y) {}
-		public void mouseDrag(int x, int y) {}
+		public void mouseUp(int x, int y) {
+			myArc.setDashed(false);
+		}
+		public void mouseDrag(int x, int y) {
+			myArc.setDashed(true);
+			myArc.setSize(x-x1, y-y1);
+		}
 	}
 }

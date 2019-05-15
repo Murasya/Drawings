@@ -9,7 +9,13 @@ public class MyHendecagonal extends MyDrawing
 		super();
 		setLocation(xpt, ypt);
 	}
-	
+
+	public MyHendecagonal(int xpt, int ypt, int wpt, int hpt) {
+		super();
+		setLocation(xpt, ypt);
+		setSize(wpt, hpt);
+	}
+
 	public MyHendecagonal(int xpt, int ypt, int rpt, Color fc) {
 		super();
 		setLocation(xpt, ypt);
@@ -17,17 +23,16 @@ public class MyHendecagonal extends MyDrawing
 		setFillColor(fc);
 		setLineColor(fc);
 	}
-	
+
 	public void draw(Graphics g) {
-		int r = getW() / 2;
-		int x = getX() - r;
-		int y = getY() - r;
+		int x = getX();
+		int y = getY();
 		int w = getW();
 		int h = getH();
 		int i = 0;
 		int xw[] = new int[11];
 		int yw[] = new int[11];
-		
+
 		if (w < 0) {
 			x += w;
 			w *= -1;
@@ -36,14 +41,19 @@ public class MyHendecagonal extends MyDrawing
 			y += h;
 			h *= -1;
 		}
-		
+
 		for(i = 0; i < 11; i++) {
-			xw[i] = x + (int)(Math.sin((360.0 / 11 * i)/180 * 3.14) * r);
-			yw[i] = y - (int)(Math.cos((360.0 / 11 * i)/180 * 3.14) * r);
+			xw[i] = x + w/2 + (int)(Math.sin((360.0 / 11 * i)/180 * 3.14) * w/2);
+			yw[i] = y + h/2 + (int)(Math.cos((360.0 / 11 * i)/180 * 3.14) * h/2);
 		}
-		
+
 		Graphics2D g2 = (Graphics2D) g;
-		g2.setStroke(new BasicStroke(getLineWidth()));
+
+		if (getDashed())
+			g2.setStroke(new MyDashStroke(getLineWidth()));
+		else
+			g2.setStroke(new BasicStroke(getLineWidth()));
+
 		g2.setColor(getFillColor());
 		g2.fillPolygon(xw, yw, 11);
 		g2.setColor(getLineColor());
