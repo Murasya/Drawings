@@ -7,6 +7,7 @@ public class MyDrawing
 	private Color lineColor, fillColor;
 	private int lineWidth;
 	private int lineBold;
+	private boolean isDropShadow = false;
 
 	private boolean isDashed = false;
 
@@ -92,5 +93,13 @@ public class MyDrawing
 
 	public boolean getDashed() {
 		return isDashed;
+	}
+
+	public void setDropShadow(boolean b) {
+		isDropShadow = b;
+	}
+
+	public boolean getDropShadow() {
+		return isDropShadow;
 	}
 }

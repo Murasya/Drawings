@@ -10,6 +10,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -37,6 +38,9 @@ public class MyApplication extends JFrame
 
 		ArcButton arcButton = new ArcButton(stateManager);
 		jp.add(arcButton);
+
+		DropShadowBox dropShadowBox = new DropShadowBox(stateManager);
+		jp.add(dropShadowBox);
 
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(jp, BorderLayout.NORTH);
@@ -70,7 +74,7 @@ public class MyApplication extends JFrame
 	}
 
 	public Dimension getPreferredSize() {
-		return new Dimension(300, 400);
+		return new Dimension(400, 400);
 	}
 
 	public static void main(String[] args) {
