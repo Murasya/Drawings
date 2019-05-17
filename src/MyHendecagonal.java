@@ -16,10 +16,10 @@ public class MyHendecagonal extends MyDrawing
 		setSize(wpt, hpt);
 	}
 
-	public MyHendecagonal(int xpt, int ypt, int rpt, Color fc) {
+	public MyHendecagonal(int xpt, int ypt, int wpt, int hpt, Color fc) {
 		super();
 		setLocation(xpt, ypt);
-		setSize(rpt, rpt);
+		setSize(wpt, hpt);
 		setFillColor(fc);
 		setLineColor(fc);
 	}

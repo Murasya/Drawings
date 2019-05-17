@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,6 +36,11 @@ public class HendButton extends JButton {
 
 		public void mouseUp(int x, int y) {
 			myHend.setDashed(false);
+			if (myHend.getDropShadow()) {
+				stateManager.removeDrawing(myHend);
+				stateManager.addDrawing(new MyHendecagonal(x1+5, y1+5, x-x1, y-y1, Color.BLACK));
+				stateManager.addDrawing(myHend);
+			}
 		}
 		public void mouseDrag(int x, int y) {
 			myHend.setDashed(true);
