@@ -5,22 +5,16 @@ import java.awt.Graphics2D;
 
 public class MyArc extends MyDrawing{
 	public MyArc(int xpt, int ypt) {
-		super();
+		super(xpt, ypt);
 		setLocation(xpt, ypt);
 	}
 
 	public MyArc(int xpt, int ypt, int wpt, int hpt) {
-		super();
-		setLocation(xpt, ypt);
-		setSize(wpt, hpt);
+		super(xpt, ypt, wpt, hpt);
 	}
 
 	public MyArc(int xpt, int ypt, int wpt, int hpt, Color fc) {
-		super();
-		setLocation(xpt, ypt);
-		setSize(wpt, hpt);
-		setFillColor(fc);
-		setLineColor(fc);
+		super(xpt, ypt, wpt, hpt, fc);
 	}
 
 	public void draw(Graphics g) {

@@ -19,6 +19,21 @@ public class MyDrawing
 		lineWidth = 1;
 	}
 
+	public MyDrawing(int xpt, int ypt) {
+		this();
+		setLocation(xpt, ypt);
+	}
+
+	public MyDrawing(int xpt, int ypt, int wpt, int hpt) {
+		this(xpt, ypt);
+		setSize(wpt, hpt);
+	}
+	public MyDrawing(int xpt, int ypt, int wpt, int hpt, Color fc) {
+		this(xpt, ypt, wpt, hpt);
+		setFillColor(fc);
+		setLineColor(fc);
+	}
+
 	public void draw(Graphics g) {
 
 	}
