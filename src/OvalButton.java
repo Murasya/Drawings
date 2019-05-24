@@ -35,7 +35,8 @@ public class OvalButton extends JButton {
 		}
 
 		public void mouseUp(int x, int y) {
-			myOval.setDashed(false);
+			if (!stateManager.getDashed())
+				myOval.setDashed(false);
 			if (myOval.getDropShadow()) {
 				stateManager.removeDrawing(myOval);
 				stateManager.addDrawing(new MyOval(x1+5, y1+5, x-x1, y-y1, Color.BLACK));

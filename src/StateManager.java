@@ -25,6 +25,9 @@ public class StateManager {
 	public void setDashed(boolean b) {
 		this.isDashed = b;
 	}
+	public boolean getDashed() {
+		return isDashed;
+	}
 	public void mouseDown(int x, int y) {
 		state.mouseDown(x, y);
 	}

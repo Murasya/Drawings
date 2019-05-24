@@ -42,6 +42,9 @@ public class MyApplication extends JFrame
 		DropShadowBox dropShadowBox = new DropShadowBox(stateManager);
 		jp.add(dropShadowBox);
 
+		DashStrokeBox dashStrokeBox = new DashStrokeBox(stateManager);
+		jp.add(dashStrokeBox);
+
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(jp, BorderLayout.NORTH);
 		getContentPane().add(canvas, BorderLayout.CENTER);
@@ -74,7 +77,7 @@ public class MyApplication extends JFrame
 	}
 
 	public Dimension getPreferredSize() {
-		return new Dimension(400, 400);
+		return new Dimension(700, 400);
 	}
 
 	public static void main(String[] args) {
@@ -82,5 +85,4 @@ public class MyApplication extends JFrame
 		app.pack();
 		app.setVisible(true);
 	}
-
 }

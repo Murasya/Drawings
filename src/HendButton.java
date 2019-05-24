@@ -35,7 +35,8 @@ public class HendButton extends JButton {
 		}
 
 		public void mouseUp(int x, int y) {
-			myHend.setDashed(false);
+			if (!stateManager.getDashed())
+				myHend.setDashed(false);
 			if (myHend.getDropShadow()) {
 				stateManager.removeDrawing(myHend);
 				stateManager.addDrawing(new MyHendecagonal(x1+5, y1+5, x-x1, y-y1, Color.BLACK));
@@ -45,7 +46,6 @@ public class HendButton extends JButton {
 		public void mouseDrag(int x, int y) {
 			myHend.setDashed(true);
 			myHend.setSize(x-x1, y-y1);
-
 		}
 	}
 }
