@@ -4,13 +4,18 @@ public class StateManager {
 	private State state;
 	private boolean isDashed;
 	private boolean isDropShadow;
+	private float lineWidth;
 
 	public StateManager(MyCanvas canvas) {
 		this.canvas = canvas;
+		isDashed = false;
+		isDropShadow = false;
+		lineWidth = 1.0f;
 	}
 	public void addDrawing(MyDrawing md) {
 		md.setDashed(isDashed);
 		md.setDropShadow(isDropShadow);
+		md.setLineWidth(lineWidth);
 		canvas.addDrawing(md);
 	}
 	public void removeDrawing(MyDrawing md) {
@@ -24,6 +29,9 @@ public class StateManager {
 	}
 	public void setDashed(boolean b) {
 		this.isDashed = b;
+	}
+	public void setLineWidth(float b) {
+		this.lineWidth = b;
 	}
 	public boolean getDashed() {
 		return isDashed;

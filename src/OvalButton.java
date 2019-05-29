@@ -30,6 +30,7 @@ public class OvalButton extends JButton {
 
 		public void mouseDown(int x, int y) {
 			stateManager.addDrawing(myOval = new MyOval(x, y, 0, 0));
+			//System.out.println(myOval.getLineWidth());
 			x1 = x;
 			y1 = y;
 		}

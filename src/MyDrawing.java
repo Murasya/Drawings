@@ -5,18 +5,18 @@ public class MyDrawing
 {
 	private int x, y, w, h;
 	private Color lineColor, fillColor;
-	private int lineWidth;
-	private int lineBold;
-	private boolean isDropShadow = false;
-
-	private boolean isDashed = false;
+	private float lineWidth;
+	private boolean isDropShadow;
+	private boolean isDashed;
 
 	public MyDrawing() {
 		x = y = 0;
 		w = h = 40;
 		lineColor = Color.black;
 		fillColor = Color.white;
-		lineWidth = 1;
+		lineWidth = 1.0f;
+		isDropShadow = false;
+		isDashed = false;
 	}
 
 	public MyDrawing(int xpt, int ypt) {
@@ -66,10 +66,6 @@ public class MyDrawing
 		this.h = h;
 	}
 
-	public void setLineBold(int lb) {
-		this.lineBold = lb;
-	}
-
 	public int getX() {
 		return x;
 	}
@@ -86,7 +82,11 @@ public class MyDrawing
 		return h;
 	}
 
-	public int getLineWidth() {
+	public void setLineWidth(float b) {
+		this.lineWidth = b;
+	}
+
+	public float getLineWidth() {
 		return lineWidth;
 	}
 
@@ -96,10 +96,6 @@ public class MyDrawing
 
 	public Color getLineColor() {
 		return lineColor;
-	}
-
-	public int getLineBold() {
-		return lineBold;
 	}
 
 	public void setDashed(boolean b) {

@@ -45,6 +45,9 @@ public class MyApplication extends JFrame
 		DashStrokeBox dashStrokeBox = new DashStrokeBox(stateManager);
 		jp.add(dashStrokeBox);
 
+		LineBoldComboBox lineBold = new LineBoldComboBox(stateManager);
+		jp.add(lineBold);
+
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(jp, BorderLayout.NORTH);
 		getContentPane().add(canvas, BorderLayout.CENTER);
