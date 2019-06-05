@@ -16,10 +16,13 @@ public class StateManager {
 		md.setDashed(isDashed);
 		md.setDropShadow(isDropShadow);
 		md.setLineWidth(lineWidth);
-		canvas.addDrawing(md);
+		this.canvas.getMediator().addDrawing(md);
+	}
+	public Mediator getMediator() {
+		return canvas.getMediator();
 	}
 	public void removeDrawing(MyDrawing md) {
-		canvas.removeDrawing(md);
+		this.canvas.getMediator().removeDrawing(md);
 	}
 	public void setState(State state) {
 		this.state = state;

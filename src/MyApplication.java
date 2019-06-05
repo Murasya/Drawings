@@ -30,6 +30,9 @@ public class MyApplication extends JFrame
 
 		stateManager = new StateManager(canvas);
 
+		SelectButton selectButton = new SelectButton(stateManager);
+		jp.add(selectButton);
+
 		OvalButton ovalButton = new OvalButton(stateManager);
 		jp.add(ovalButton);
 

@@ -2,6 +2,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 
 public class MyHendecagonal extends MyDrawing
 {
@@ -51,5 +52,13 @@ public class MyHendecagonal extends MyDrawing
 		g2.fillPolygon(xw, yw, 11);
 		g2.setColor(getLineColor());
 		g2.drawPolygon(xw, yw, 11);
+		super.draw(g);
+	}
+
+	public boolean contains(int x, int y) {
+		return region.contains(x, y);
+	}
+	public void setRegion() {
+		region = new Rectangle(getX(), getY(), getW(), getH());
 	}
 }

@@ -1,31 +1,29 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Vector;
+import java.util.Enumeration;
 
 import javax.swing.JPanel;
 
 public class MyCanvas extends JPanel
 {
-	private Vector<MyDrawing> drawings;
-	
+	Mediator mediator;
+
 	public MyCanvas() {
 		setBackground(Color.white);
-		
-		drawings = new Vector<MyDrawing>();
+		this.mediator = new Mediator(this);
 	}
-	
+
+	public Mediator getMediator() {
+		return mediator;
+	}
+
 	public void paint(Graphics g) {
 		super.paint(g);
-		for(MyDrawing d : drawings) {
+
+		Enumeration<MyDrawing> e = mediator.drawingsElements();
+		while (e.hasMoreElements()) {
+			MyDrawing d = e.nextElement();
 			d.draw(g);
 		}
-	}
-	
-	public void addDrawing(MyDrawing d) {
-		drawings.add(d);
-	}
-	
-	public void removeDrawing(MyDrawing d) {
-		drawings.remove(d);
 	}
 }

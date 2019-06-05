@@ -1,13 +1,17 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Shape;
 
-public class MyDrawing
+public abstract class MyDrawing
 {
 	private int x, y, w, h;
 	private Color lineColor, fillColor;
 	private float lineWidth;
 	private boolean isDropShadow;
 	private boolean isDashed;
+	private boolean isSelected;
+	Shape region;
+	final int SIZE = 7;
 
 	public MyDrawing() {
 		x = y = 0;
@@ -17,13 +21,12 @@ public class MyDrawing
 		lineWidth = 1.0f;
 		isDropShadow = false;
 		isDashed = false;
+		setRegion();
 	}
-
 	public MyDrawing(int xpt, int ypt) {
 		this();
 		setLocation(xpt, ypt);
 	}
-
 	public MyDrawing(int xpt, int ypt, int wpt, int hpt) {
 		this(xpt, ypt);
 		setSize(wpt, hpt);
@@ -35,8 +38,29 @@ public class MyDrawing
 	}
 
 	public void draw(Graphics g) {
-
+		if (isSelected) {
+			g.setColor(Color.black);
+			g.fillRect(x+w/2-SIZE/2, y-SIZE/2, SIZE, SIZE);
+			g.fillRect(x-SIZE/2, y+h/2-SIZE/2, SIZE, SIZE);
+			g.fillRect(x+w/2-SIZE/2, y+h-SIZE/2, SIZE, SIZE);
+			g.fillRect(x+w-SIZE/2, y+h/2-SIZE/2, SIZE, SIZE);
+			g.fillRect(x-SIZE/2, y-SIZE/2, SIZE, SIZE);
+			g.fillRect(x+w-SIZE/2, y-SIZE/2, SIZE, SIZE);
+			g.fillRect(x-SIZE/2, y+h-SIZE/2, SIZE, SIZE);
+			g.fillRect(x+w-SIZE/2, y+h-SIZE/2, SIZE, SIZE);
+		}
+		setRegion();
 	}
+
+	public boolean getSelected() {
+		return isSelected;
+	}
+	public void setSelected(boolean isSelected) {
+		this.isSelected = isSelected;
+	}
+
+	public abstract boolean contains(int x, int y);
+	public abstract void setRegion();
 
 	public void move(int dx, int dy) {
 		x += dx;
@@ -46,21 +70,17 @@ public class MyDrawing
 	public void setLineColor(Color c) {
 		lineColor = c;
 	}
-
 	public void setFillColor(Color c) {
 		fillColor = c;
 	}
-
 	public void setColor(Color c) {
 		lineColor = c;
 		fillColor = c;
 	}
-
 	public void setLocation(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
-
 	public void setSize(int w, int h) {
 		this.w = w;
 		this.h = h;
@@ -69,15 +89,12 @@ public class MyDrawing
 	public int getX() {
 		return x;
 	}
-
 	public int getY() {
 		return y;
 	}
-
 	public int getW() {
 		return w;
 	}
-
 	public int getH() {
 		return h;
 	}
@@ -85,7 +102,6 @@ public class MyDrawing
 	public void setLineWidth(float b) {
 		this.lineWidth = b;
 	}
-
 	public float getLineWidth() {
 		return lineWidth;
 	}
@@ -93,7 +109,6 @@ public class MyDrawing
 	public Color getFillColor() {
 		return fillColor;
 	}
-
 	public Color getLineColor() {
 		return lineColor;
 	}
@@ -101,7 +116,6 @@ public class MyDrawing
 	public void setDashed(boolean b) {
 		isDashed = b;
 	}
-
 	public boolean getDashed() {
 		return isDashed;
 	}
@@ -109,7 +123,6 @@ public class MyDrawing
 	public void setDropShadow(boolean b) {
 		isDropShadow = b;
 	}
-
 	public boolean getDropShadow() {
 		return isDropShadow;
 	}
