@@ -1,6 +1,5 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Enumeration;
 
 import javax.swing.JButton;
 
@@ -21,6 +20,7 @@ public class SelectButton extends JButton {
 
 	class SelectState implements State {
 		StateManager stateManager;
+		private int x, y;
 
 		public SelectState(StateManager stateManager) {
 			this.stateManager = stateManager;
@@ -41,10 +41,20 @@ public class SelectButton extends JButton {
 		    }
 		    */
 			stateManager.getMediator().setSelected(x, y);
+			this.x = x;
+			this.y = y;
 			stateManager.getMediator().repaint();
 		}
 
 		public void mouseUp(int x, int y) {}
-		public void mouseDrag(int x, int y) {}
+		public void mouseDrag(int x, int y) {
+			if (stateManager.getMediator().getSelectedDrawing() != null) {
+				int dx = x - this.x;
+				int dy = y - this.y;
+				this.x = x; this.y = y;
+				stateManager.getMediator().getSelectedDrawing().move(dx, dy);
+				stateManager.getMediator().repaint();
+			}
+		}
 	}
 }

@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -38,11 +37,6 @@ public class OvalButton extends JButton {
 		public void mouseUp(int x, int y) {
 			if (!stateManager.getDashed())
 				myOval.setDashed(false);
-			if (myOval.getDropShadow()) {
-				stateManager.removeDrawing(myOval);
-				stateManager.addDrawing(new MyOval(x1+5, y1+5, x-x1, y-y1, Color.BLACK));
-				stateManager.addDrawing(myOval);
-			}
 		}
 		public void mouseDrag(int x, int y) {
 			myOval.setDashed(true);

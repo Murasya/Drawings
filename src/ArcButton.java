@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -37,11 +36,6 @@ public class ArcButton extends JButton {
 		public void mouseUp(int x, int y) {
 			if (!stateManager.getDashed())
 				myArc.setDashed(false);
-			if (myArc.getDropShadow()) {
-				stateManager.removeDrawing(myArc);
-				stateManager.addDrawing(new MyArc(x1+5, y1+5, x-x1, y-y1, Color.BLACK));
-				stateManager.addDrawing(myArc);
-			}
 		}
 		public void mouseDrag(int x, int y) {
 			myArc.setDashed(true);

@@ -45,6 +45,13 @@ public class MyArc extends MyDrawing{
 		else
 			g2.setStroke(new BasicStroke(getLineWidth()));
 
+		if (getDropShadow()) {
+			g2.setColor(Color.black);
+			g2.fillArc(x+5, y+5, w, h, cir_s, cir_e);
+			g2.setColor(Color.black);
+			g2.drawArc(x+5, y+5, w, h, cir_s, cir_e);
+		}
+
 		g2.setColor(getFillColor());
 		g2.fillArc(x, y, w, h, cir_s, cir_e);
 		g2.setColor(getLineColor());
