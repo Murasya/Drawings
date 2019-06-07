@@ -20,7 +20,6 @@ public class HendButton extends JButton {
 
 	class HendState implements State {
 		StateManager stateManager;
-		private int x1, y1;
 		MyHendecagonal myHend;
 
 		public HendState(StateManager stateManager) {
@@ -29,8 +28,6 @@ public class HendButton extends JButton {
 
 		public void mouseDown(int x, int y) {
 			stateManager.addDrawing(myHend = new MyHendecagonal(x, y, 0, 0));
-			x1 = x;
-			y1 = y;
 		}
 
 		public void mouseUp(int x, int y) {
@@ -39,7 +36,7 @@ public class HendButton extends JButton {
 		}
 		public void mouseDrag(int x, int y) {
 			myHend.setDashed(true);
-			myHend.setSize(x-x1, y-y1);
+			myHend.setSize(x-myHend.getX(), y-myHend.getY());
 		}
 	}
 }

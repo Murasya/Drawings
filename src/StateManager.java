@@ -1,13 +1,16 @@
+import java.awt.Color;
 
 public class StateManager {
 	private MyCanvas canvas;
 	private State state;
+	private Color color;
 	private boolean isDashed;
 	private boolean isDropShadow;
 	private float lineWidth;
 
 	public StateManager(MyCanvas canvas) {
 		this.canvas = canvas;
+		state = null;
 		isDashed = false;
 		isDropShadow = false;
 		lineWidth = 1.0f;
@@ -23,6 +26,9 @@ public class StateManager {
 	}
 	public void removeDrawing(MyDrawing md) {
 		this.canvas.getMediator().removeDrawing(md);
+	}
+	public void setColor(Color c) {
+		this.color = c;
 	}
 	public void setState(State state) {
 		this.state = state;
@@ -40,12 +46,18 @@ public class StateManager {
 		return isDashed;
 	}
 	public void mouseDown(int x, int y) {
-		state.mouseDown(x, y);
+		if (state != null)
+			state.mouseDown(x, y);
+		canvas.repaint();
 	}
 	public void mouseDrag(int x, int y) {
-		state.mouseDrag(x, y);
+		if (state != null)
+			state.mouseDrag(x, y);
+		canvas.repaint();
 	}
 	public void mouseUp(int x, int y) {
-		state.mouseUp(x, y);
+		if (state != null)
+			state.mouseUp(x, y);
+		canvas.repaint();
 	}
 }

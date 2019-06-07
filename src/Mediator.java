@@ -1,14 +1,17 @@
+import java.awt.Color;
 import java.util.Enumeration;
 import java.util.Vector;
 
 // インスタンスに対する操作
 public class Mediator {
 	Vector<MyDrawing> drawings;
+	Color color;
 	MyCanvas canvas;
 	MyDrawing selectedDrawing = null;
 
 	public Mediator(MyCanvas canvas) {
 		this.canvas = canvas;
+		color = Color.white;
 		drawings = new Vector<MyDrawing>();
 	}
 
@@ -17,8 +20,9 @@ public class Mediator {
 	}
 
 	public void addDrawing(MyDrawing d) {
+		d.setColor(color);
 		drawings.add(d);
-		setSelectedDrawing(d);
+		//setSelectedDrawing(d);
 	}
 
 	public void removeDrawing(MyDrawing d) {
@@ -59,5 +63,16 @@ public class Mediator {
 
 	public void setSelectedDrawing(MyDrawing d) {
 		this.selectedDrawing = d;
+	}
+
+	public void setColor(Color c) {
+		color = c;
+		if (selectedDrawing != null) {
+			selectedDrawing.setColor(c);
+			if (c == Color.white) {
+				selectedDrawing.setLineColor(Color.black);
+			}
+		}
+		canvas.repaint();
 	}
 }

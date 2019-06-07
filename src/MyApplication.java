@@ -51,6 +51,9 @@ public class MyApplication extends JFrame
 		LineBoldComboBox lineBold = new LineBoldComboBox(stateManager);
 		jp.add(lineBold);
 
+		ColorComboBox colorBox = new ColorComboBox(stateManager);
+		jp.add(colorBox);
+
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(jp, BorderLayout.NORTH);
 		getContentPane().add(canvas, BorderLayout.CENTER);
@@ -58,18 +61,15 @@ public class MyApplication extends JFrame
 		canvas.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				stateManager.mouseDown(e.getX(), e.getY());
-				canvas.repaint();
 			}
 			public void mouseReleased(MouseEvent e) {
 				stateManager.mouseUp(e.getX(), e.getY());
-				canvas.repaint();
 			}
 		});
 
 		canvas.addMouseMotionListener(new MouseMotionAdapter() {
 			public void mouseDragged(MouseEvent e) {
 				stateManager.mouseDrag(e.getX(), e.getY());
-				canvas.repaint();
 			}
 		});
 

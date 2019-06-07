@@ -76,6 +76,8 @@ public abstract class MyDrawing
 	public void setColor(Color c) {
 		lineColor = c;
 		fillColor = c;
+		if (c == Color.white)
+			lineColor = Color.black;
 	}
 	public void setLocation(int x, int y) {
 		this.x = x;

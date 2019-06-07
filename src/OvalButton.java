@@ -20,7 +20,6 @@ public class OvalButton extends JButton {
 
 	class OvalState implements State {
 		StateManager stateManager;
-		private int x1, y1;
 		MyDrawing myOval;
 
 		public OvalState(StateManager stateManager) {
@@ -29,9 +28,6 @@ public class OvalButton extends JButton {
 
 		public void mouseDown(int x, int y) {
 			stateManager.addDrawing(myOval = new MyOval(x, y, 0, 0));
-			//System.out.println(myOval.getLineWidth());
-			x1 = x;
-			y1 = y;
 		}
 
 		public void mouseUp(int x, int y) {
@@ -40,7 +36,7 @@ public class OvalButton extends JButton {
 		}
 		public void mouseDrag(int x, int y) {
 			myOval.setDashed(true);
-			myOval.setSize(x-x1, y-y1);
+			myOval.setSize(x-myOval.getX(), y-myOval.getY());
 		}
 	}
 }
