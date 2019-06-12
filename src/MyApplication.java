@@ -55,6 +55,9 @@ public class MyApplication extends JFrame
 		ColorComboBox colorBox = new ColorComboBox(stateManager);
 		jp.add(colorBox);
 
+		rightMenu rightMenu = new rightMenu(stateManager);
+		jp.add(rightMenu);
+
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(jp, BorderLayout.NORTH);
 		getContentPane().add(canvas, BorderLayout.CENTER);
@@ -62,7 +65,10 @@ public class MyApplication extends JFrame
 		canvas.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				canvas.requestFocusInWindow();
-				stateManager.mouseDown(e.getX(), e.getY());
+				if (e.getButton() == MouseEvent.BUTTON3)
+					rightMenu.show(e.getComponent(), e.getX(), e.getY());
+				else
+					stateManager.mouseDown(e.getX(), e.getY());
 			}
 			public void mouseReleased(MouseEvent e) {
 				stateManager.mouseUp(e.getX(), e.getY());

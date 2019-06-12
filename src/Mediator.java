@@ -6,12 +6,15 @@ public class Mediator {
 	Vector<MyDrawing> drawings;
 	Color color;
 	MyCanvas canvas;
-	MyDrawing selectedDrawing = null;
+	MyDrawing selectedDrawing;
+	MyDrawing buffer;
 
 	public Mediator(MyCanvas canvas) {
 		this.canvas = canvas;
 		color = Color.white;
 		drawings = new Vector<MyDrawing>();
+		selectedDrawing = null;
+		buffer = null;
 	}
 
 	public Enumeration<MyDrawing> drawingsElements() {
@@ -26,6 +29,8 @@ public class Mediator {
 
 	public void removeDrawing(MyDrawing d) {
 		drawings.remove(d);
+		selectedDrawing = null;
+		repaint();
 	}
 
 	public MyDrawing getSelectedDrawing() {
@@ -73,5 +78,28 @@ public class Mediator {
 			}
 		}
 		canvas.repaint();
+	}
+	public void clearBuffer() {
+		buffer = null;
+	}
+	public void copy() {
+		clearBuffer();
+		if (selectedDrawing != null)
+			buffer = selectedDrawing.clone();
+	}
+	public void cut() {
+		clearBuffer();
+		if (selectedDrawing != null) {
+			buffer = selectedDrawing.clone();
+			removeDrawing(selectedDrawing);
+		}
+	}
+	public void paste(int x, int y) {
+		if (buffer != null) {
+			MyDrawing clone = buffer.clone();
+			clone.setLocation(x, y);
+			addDrawing(clone);
+			repaint();
+		}
 	}
 }

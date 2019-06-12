@@ -6,6 +6,7 @@ public class StateManager {
 	private boolean isDashed;
 	private boolean isDropShadow;
 	private float lineWidth;
+	rightMenu rm;
 
 	public StateManager(MyCanvas canvas) {
 		this.canvas = canvas;

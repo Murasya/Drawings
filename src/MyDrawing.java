@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Shape;
 
-public abstract class MyDrawing
+public abstract class MyDrawing implements Cloneable
 {
 	private int x, y, w, h;
 	private Color lineColor, fillColor;
@@ -127,5 +127,15 @@ public abstract class MyDrawing
 	}
 	public boolean getDropShadow() {
 		return isDropShadow;
+	}
+	@Override
+	public MyDrawing clone() {
+		MyDrawing d = null;
+		try {
+			d = (MyDrawing)super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		return d;
 	}
 }

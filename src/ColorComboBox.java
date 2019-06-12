@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 
 public class ColorComboBox extends JComboBox<String> {
 	StateManager stateManager;
-	JComboBox<String> combo;
 	String[] bolds = {"WHITE", "GRAY", "BLACK", "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "CYAN", "Other Colors"};
 
 	public ColorComboBox(StateManager stateManager) {
@@ -25,7 +24,7 @@ public class ColorComboBox extends JComboBox<String> {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Mediator med = stateManager.getMediator();
-			System.out.println(getItemAt(getSelectedIndex()));
+			//System.out.println(getItemAt(getSelectedIndex()));
 			if (getItemAt(getSelectedIndex()).equals("Other Colors")) {
 				color = JColorChooser.showDialog(jf, "JColorChooser", Color.white);
 			} else {
