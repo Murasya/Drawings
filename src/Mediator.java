@@ -21,8 +21,8 @@ public class Mediator {
 
 	public void addDrawing(MyDrawing d) {
 		d.setColor(color);
-		drawings.add(d);
 		//setSelectedDrawing(d);
+		drawings.add(d);
 	}
 
 	public void removeDrawing(MyDrawing d) {
