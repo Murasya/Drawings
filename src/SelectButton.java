@@ -27,19 +27,6 @@ public class SelectButton extends JButton {
 		}
 
 		public void mouseDown(int x, int y) {
-			/*
-			Enumeration<MyDrawing> ds = stateManager.getMediator().drawingsElements();
-			for (Enumeration<MyDrawing> d = ds ; d.hasMoreElements() ;) {
-				MyDrawing t = d.nextElement();
-				System.out.println(t);
-		        if (t.contains(x, y)) {
-		        	System.out.println("true");
-		        	t.setSelected(true);
-		        } else {
-		        	t.setSelected(false);
-		        }
-		    }
-		    */
 			stateManager.getMediator().setSelected(x, y);
 			this.x = x;
 			this.y = y;

@@ -3,6 +3,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -25,6 +27,7 @@ public class MyApplication extends JFrame
 
 		canvas = new MyCanvas();
 		canvas.setBackground(Color.white);
+		canvas.setFocusable(true);
 
 		stateManager = new StateManager(canvas);
 
@@ -58,6 +61,7 @@ public class MyApplication extends JFrame
 
 		canvas.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
+				canvas.requestFocusInWindow();
 				stateManager.mouseDown(e.getX(), e.getY());
 			}
 			public void mouseReleased(MouseEvent e) {
@@ -68,6 +72,12 @@ public class MyApplication extends JFrame
 		canvas.addMouseMotionListener(new MouseMotionAdapter() {
 			public void mouseDragged(MouseEvent e) {
 				stateManager.mouseDrag(e.getX(), e.getY());
+			}
+		});
+
+		canvas.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				stateManager.keyDown(e.getKeyCode());
 			}
 		});
 

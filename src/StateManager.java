@@ -1,9 +1,8 @@
-import java.awt.Color;
+import java.awt.event.KeyEvent;
 
 public class StateManager {
 	private MyCanvas canvas;
 	private State state;
-	private Color color;
 	private boolean isDashed;
 	private boolean isDropShadow;
 	private float lineWidth;
@@ -26,9 +25,6 @@ public class StateManager {
 	}
 	public void removeDrawing(MyDrawing md) {
 		this.canvas.getMediator().removeDrawing(md);
-	}
-	public void setColor(Color c) {
-		this.color = c;
 	}
 	public void setState(State state) {
 		this.state = state;
@@ -58,6 +54,14 @@ public class StateManager {
 	public void mouseUp(int x, int y) {
 		if (state != null)
 			state.mouseUp(x, y);
+		canvas.repaint();
+	}
+	public void keyDown(int keyCode) {
+		MyDrawing selectedDrawing = canvas.getMediator().selectedDrawing;
+		if (keyCode == KeyEvent.VK_DELETE) {
+			System.out.println("pressDeleteKey");
+			canvas.getMediator().removeDrawing(selectedDrawing);
+		}
 		canvas.repaint();
 	}
 }

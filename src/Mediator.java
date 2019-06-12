@@ -2,7 +2,6 @@ import java.awt.Color;
 import java.util.Enumeration;
 import java.util.Vector;
 
-// インスタンスに対する操作
 public class Mediator {
 	Vector<MyDrawing> drawings;
 	Color color;
