@@ -1,17 +1,16 @@
+
 import java.awt.Color;
 import java.util.Enumeration;
 import java.util.Vector;
 
 public class Mediator {
 	Vector<MyDrawing> drawings;
-	Color color;
 	MyCanvas canvas;
 	MyDrawing selectedDrawing;
 	MyDrawing buffer;
 
 	public Mediator(MyCanvas canvas) {
 		this.canvas = canvas;
-		color = Color.white;
 		drawings = new Vector<MyDrawing>();
 		selectedDrawing = null;
 		buffer = null;
@@ -22,8 +21,7 @@ public class Mediator {
 	}
 
 	public void addDrawing(MyDrawing d) {
-		d.setColor(color);
-		//setSelectedDrawing(d);
+		// setSelectedDrawing(d);
 		drawings.add(d);
 	}
 
@@ -69,15 +67,17 @@ public class Mediator {
 		this.selectedDrawing = d;
 	}
 
-	public void setColor(Color c) {
-		color = c;
-		if (selectedDrawing != null) {
-			selectedDrawing.setColor(c);
-			if (c == Color.white) {
-				selectedDrawing.setLineColor(Color.black);
-			}
-		}
-		canvas.repaint();
+	public void setFillColor(Color c) {
+		if (selectedDrawing != null)
+			selectedDrawing.setFillColor(c);
+	}
+	public void setLineColor(Color c) {
+		if (selectedDrawing != null)
+			selectedDrawing.setLineColor(c);
+	}
+	public void setLineWidth(float lineWidth) {
+		if (selectedDrawing != null)
+			selectedDrawing.setLineWidth(lineWidth);
 	}
 	public void clearBuffer() {
 		buffer = null;
@@ -99,7 +99,15 @@ public class Mediator {
 			MyDrawing clone = buffer.clone();
 			clone.setLocation(x, y);
 			addDrawing(clone);
+			selectedDrawing.setSelected(false);
+			selectedDrawing = clone;
 			repaint();
+		}
+	}
+
+	public void setDropShadow(boolean b) {
+		if (selectedDrawing != null) {
+			selectedDrawing.setDropShadow(b);
 		}
 	}
 }

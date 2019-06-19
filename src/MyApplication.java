@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Label;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -49,11 +50,18 @@ public class MyApplication extends JFrame
 		DashStrokeBox dashStrokeBox = new DashStrokeBox(stateManager);
 		jp.add(dashStrokeBox);
 
+		jp.add(new Label("LineWidth", Label.RIGHT));
+
 		LineBoldComboBox lineBold = new LineBoldComboBox(stateManager);
 		jp.add(lineBold);
 
-		ColorComboBox colorBox = new ColorComboBox(stateManager);
-		jp.add(colorBox);
+		jp.add(new Label("FillColor", Label.RIGHT));
+		ColorComboBox fillColor = new ColorComboBox(stateManager, 1);
+		jp.add(fillColor);
+
+		jp.add(new Label("LineColor", Label.RIGHT));
+		ColorComboBox lineColor = new ColorComboBox(stateManager, 2);
+		jp.add(lineColor);
 
 		rightMenu rightMenu = new rightMenu(stateManager);
 		jp.add(rightMenu);
@@ -97,7 +105,7 @@ public class MyApplication extends JFrame
 	}
 
 	public Dimension getPreferredSize() {
-		return new Dimension(700, 400);
+		return new Dimension(1100, 400);
 	}
 
 	public static void main(String[] args) {

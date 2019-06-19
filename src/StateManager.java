@@ -1,3 +1,5 @@
+
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 
 public class StateManager {
@@ -6,7 +8,8 @@ public class StateManager {
 	private boolean isDashed;
 	private boolean isDropShadow;
 	private float lineWidth;
-	rightMenu rm;
+	private Color fillColor;
+	private Color lineColor;
 
 	public StateManager(MyCanvas canvas) {
 		this.canvas = canvas;
@@ -14,33 +17,51 @@ public class StateManager {
 		isDashed = false;
 		isDropShadow = false;
 		lineWidth = 1.0f;
+		fillColor = Color.WHITE;
+		lineColor = Color.BLACK;
 	}
 	public void addDrawing(MyDrawing md) {
 		md.setDashed(isDashed);
 		md.setDropShadow(isDropShadow);
 		md.setLineWidth(lineWidth);
-		this.canvas.getMediator().addDrawing(md);
+		md.setFillColor(fillColor);
+		md.setLineColor(lineColor);
+		getMediator().addDrawing(md);
 	}
 	public Mediator getMediator() {
 		return canvas.getMediator();
 	}
 	public void removeDrawing(MyDrawing md) {
-		this.canvas.getMediator().removeDrawing(md);
+		getMediator().removeDrawing(md);
 	}
 	public void setState(State state) {
 		this.state = state;
 	}
 	public void setDropShadow(boolean b) {
 		this.isDropShadow = b;
+		getMediator().setDropShadow(b);
+		canvas.repaint();
 	}
 	public void setDashed(boolean b) {
 		this.isDashed = b;
 	}
 	public void setLineWidth(float b) {
 		this.lineWidth = b;
+		getMediator().setLineWidth(b);
+		canvas.repaint();
 	}
 	public boolean getDashed() {
 		return isDashed;
+	}
+	public void setFillColor(Color c) {
+		this.fillColor = c;
+		getMediator().setFillColor(c);
+		canvas.repaint();
+	}
+	public void setLineColor(Color c) {
+		this.lineColor = c;
+		getMediator().setLineColor(c);
+		canvas.repaint();
 	}
 	public void mouseDown(int x, int y) {
 		if (state != null)
@@ -61,7 +82,7 @@ public class StateManager {
 		MyDrawing selectedDrawing = canvas.getMediator().selectedDrawing;
 		if (keyCode == KeyEvent.VK_DELETE) {
 			System.out.println("pressDeleteKey");
-			canvas.getMediator().removeDrawing(selectedDrawing);
+			getMediator().removeDrawing(selectedDrawing);
 		}
 		canvas.repaint();
 	}

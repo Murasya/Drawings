@@ -9,13 +9,17 @@ import javax.swing.JFrame;
 
 public class ColorComboBox extends JComboBox<String> {
 	StateManager stateManager;
+	int type;
 	String[] bolds = {"WHITE", "GRAY", "BLACK", "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "CYAN", "Other Colors"};
 
-	public ColorComboBox(StateManager stateManager) {
+	public ColorComboBox(StateManager stateManager, int type) {
 		super();
 		for (String bold : bolds)
 			addItem(bold);
 		this.stateManager = stateManager;
+		this.type = type;
+		if (type == 2)
+			setSelectedIndex(2);
 		addActionListener(new ColorListener());
 	}
 	class ColorListener implements ActionListener {
@@ -23,7 +27,6 @@ public class ColorComboBox extends JComboBox<String> {
 		JFrame jf;
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Mediator med = stateManager.getMediator();
 			//System.out.println(getItemAt(getSelectedIndex()));
 			if (getItemAt(getSelectedIndex()).equals("Other Colors")) {
 				color = JColorChooser.showDialog(jf, "JColorChooser", Color.white);
@@ -35,7 +38,10 @@ public class ColorComboBox extends JComboBox<String> {
 					color = null; // Not defined
 				}
 			}
-			med.setColor(color);
+			if (type == 1)
+				stateManager.setFillColor(color);
+			else
+				stateManager.setLineColor(color);
 		}
 	}
 }
