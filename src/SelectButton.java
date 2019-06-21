@@ -30,7 +30,6 @@ public class SelectButton extends JButton {
 			stateManager.getMediator().setSelected(x, y);
 			this.x = x;
 			this.y = y;
-			stateManager.getMediator().repaint();
 		}
 
 		public void mouseUp(int x, int y) {}
@@ -40,7 +39,6 @@ public class SelectButton extends JButton {
 				int dy = y - this.y;
 				this.x = x; this.y = y;
 				stateManager.getMediator().getSelectedDrawing().move(dx, dy);
-				stateManager.getMediator().repaint();
 			}
 		}
 	}
