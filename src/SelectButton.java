@@ -21,24 +21,33 @@ public class SelectButton extends JButton {
 	class SelectState implements State {
 		StateManager stateManager;
 		private int x, y;
+		private boolean isSelect;
 
 		public SelectState(StateManager stateManager) {
 			this.stateManager = stateManager;
 		}
 
 		public void mouseDown(int x, int y) {
-			stateManager.getMediator().setSelected(x, y);
+			isSelect = stateManager.getMediator().setSelected(x, y);
 			this.x = x;
 			this.y = y;
 		}
 
-		public void mouseUp(int x, int y) {}
+		public void mouseUp(int x, int y) {
+			Mediator m = stateManager.getMediator();
+			if (!isSelect) {
+				m.removeDrawing(m.getRectangle());
+			}
+		}
 		public void mouseDrag(int x, int y) {
-			if (stateManager.getMediator().getSelectedDrawing() != null) {
+			if (isSelect) {
 				int dx = x - this.x;
 				int dy = y - this.y;
 				this.x = x; this.y = y;
-				stateManager.getMediator().getSelectedDrawing().move(dx, dy);
+				for (MyDrawing d : stateManager.getMediator().getSelectedDrawing())
+					d.move(dx, dy);
+			} else {
+				stateManager.getMediator().setRectangle(x, y);
 			}
 		}
 	}

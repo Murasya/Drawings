@@ -37,7 +37,7 @@ public class rightMenu extends JPopupMenu {
 	        public void actionPerformed(ActionEvent e){
 	            System.out.println("Delete");
 	            Mediator med = stateManager.getMediator();
-	            med.removeDrawing(med.selectedDrawing);
+	            med.removeDrawing(med.selectedDrawings);
 	        }
 	    });
 	}

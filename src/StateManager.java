@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.util.Vector;
 
 public class StateManager {
 	private MyCanvas canvas;
@@ -31,7 +32,7 @@ public class StateManager {
 	public Mediator getMediator() {
 		return canvas.getMediator();
 	}
-	public void removeDrawing(MyDrawing md) {
+	public void removeDrawing(Vector<MyDrawing> md) {
 		getMediator().removeDrawing(md);
 	}
 	public void setState(State state) {
@@ -79,7 +80,7 @@ public class StateManager {
 		canvas.repaint();
 	}
 	public void keyDown(int keyCode) {
-		MyDrawing selectedDrawing = canvas.getMediator().selectedDrawing;
+		Vector<MyDrawing> selectedDrawing = canvas.getMediator().selectedDrawings;
 		if (keyCode == KeyEvent.VK_DELETE) {
 			System.out.println("pressDeleteKey");
 			getMediator().removeDrawing(selectedDrawing);
