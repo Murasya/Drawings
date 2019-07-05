@@ -65,8 +65,6 @@ public class Mediator {
 				selectedDrawings.add(d);
 				d.setSelected(true);
 				isSelect = true;
-			} else {
-				d.setSelected(false);
 			}
 		}
 		if (!isSelect) {
@@ -142,6 +140,8 @@ public class Mediator {
 		buffer.clear();
 	}
 	public void clearSelectedDrawings() {
+		for (MyDrawing d : selectedDrawings)
+			d.setSelected(false);
 		selectedDrawings.clear();
 	}
 	public void copy() {

@@ -81,7 +81,7 @@ public class StateManager {
 	}
 	public void keyDown(int keyCode) {
 		Vector<MyDrawing> selectedDrawing = canvas.getMediator().selectedDrawings;
-		if (keyCode == KeyEvent.VK_DELETE) {
+		if (keyCode == KeyEvent.VK_BACK_SPACE) {
 			System.out.println("pressDeleteKey");
 			getMediator().removeDrawing(selectedDrawing);
 		}
