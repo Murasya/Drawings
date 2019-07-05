@@ -32,6 +32,9 @@ public class MyApplication extends JFrame
 
 		stateManager = new StateManager(canvas);
 
+		MenuBar menuBar = new MenuBar(stateManager);
+		setJMenuBar(menuBar);
+
 		SelectButton selectButton = new SelectButton(stateManager);
 		jp.add(selectButton);
 
@@ -63,7 +66,7 @@ public class MyApplication extends JFrame
 		ColorComboBox lineColor = new ColorComboBox(stateManager, 2);
 		jp.add(lineColor);
 
-		rightMenu rightMenu = new rightMenu(stateManager);
+		RightMenu rightMenu = new RightMenu(stateManager);
 		jp.add(rightMenu);
 
 		getContentPane().setLayout(new BorderLayout());

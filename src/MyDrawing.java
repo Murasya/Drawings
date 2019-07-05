@@ -1,8 +1,9 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Shape;
+import java.io.Serializable;
 
-public abstract class MyDrawing implements Cloneable
+public abstract class MyDrawing implements Cloneable, Serializable
 {
 	private int x, y, w, h;
 	private Color lineColor, fillColor;

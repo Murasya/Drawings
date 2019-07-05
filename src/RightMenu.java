@@ -6,11 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
-public class rightMenu extends JPopupMenu {
+public class RightMenu extends JPopupMenu {
 	StateManager stateManager;
 	private int x, y;
 
-	public rightMenu(StateManager stateManager) {
+	public RightMenu(StateManager stateManager) {
 		this.stateManager = stateManager;
 		addPopupMenuItem("Copy", new ActionListener(){
 	        public void actionPerformed(ActionEvent e){
