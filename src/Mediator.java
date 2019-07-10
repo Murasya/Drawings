@@ -41,7 +41,7 @@ public class Mediator {
 	}
 
 	public void move(int dx, int dy) {
-		if (selectedDrawings != null) {
+		if (!selectedDrawings.isEmpty()) {
 			for (MyDrawing d : selectedDrawings)
 				d.move(dx,  dy);
 		}
@@ -119,19 +119,19 @@ public class Mediator {
 	}
 
 	public void setFillColor(Color c) {
-		if (selectedDrawings != null) {
+		if (!selectedDrawings.isEmpty()) {
 			for (MyDrawing d : selectedDrawings)
 				d.setFillColor(c);
 		}
 	}
 	public void setLineColor(Color c) {
-		if (selectedDrawings != null) {
+		if (!selectedDrawings.isEmpty()) {
 			for (MyDrawing d : selectedDrawings)
 				d.setLineColor(c);
 		}
 	}
 	public void setLineWidth(float lineWidth) {
-		if (selectedDrawings != null) {
+		if (!selectedDrawings.isEmpty()) {
 			for (MyDrawing d : selectedDrawings)
 				d.setLineWidth(lineWidth);
 		}
@@ -174,9 +174,16 @@ public class Mediator {
 	}
 
 	public void setDropShadow(boolean b) {
-		if (selectedDrawings != null) {
+		if (!selectedDrawings.isEmpty()) {
 			for (MyDrawing d : selectedDrawings)
 				d.setDropShadow(b);
+		}
+	}
+
+	public void setDashed(boolean b) {
+		if (!selectedDrawings.isEmpty()) {
+			for (MyDrawing d : selectedDrawings)
+				d.setDashed(b);
 		}
 	}
 }

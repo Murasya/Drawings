@@ -44,6 +44,7 @@ public class File {
 	    	returnVal = fc.showSaveDialog(null);
 	    	if (returnVal == JFileChooser.APPROVE_OPTION) {
 	    		java.io.File file = fc.getSelectedFile();
+	    		mediator.clearSelectedDrawings();
 		        FileOutputStream fout = new FileOutputStream(file);
 		        ObjectOutputStream out = new ObjectOutputStream(fout);
 

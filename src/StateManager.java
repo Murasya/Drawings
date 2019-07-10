@@ -45,6 +45,8 @@ public class StateManager {
 	}
 	public void setDashed(boolean b) {
 		this.isDashed = b;
+		getMediator().setDashed(b);
+		canvas.repaint();
 	}
 	public void setLineWidth(float b) {
 		this.lineWidth = b;
