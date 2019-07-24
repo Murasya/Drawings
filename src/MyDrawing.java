@@ -11,7 +11,7 @@ public abstract class MyDrawing implements Cloneable, Serializable
 	private boolean isDropShadow;
 	private boolean isDashed;
 	private boolean isSelected;
-	Shape region;
+	transient Shape region;
 	final int SIZE = 7;
 
 	public MyDrawing() {

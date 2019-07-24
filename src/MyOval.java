@@ -3,6 +3,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class MyOval extends MyDrawing{
 	Ellipse2D region;
@@ -75,5 +78,21 @@ public class MyOval extends MyDrawing{
 			h *= -1;
 		}
 		region = new Ellipse2D.Float(x, y, w, h);
+	}
+
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		out.writeInt(getX());
+		out.writeInt(getY());
+		out.writeInt(getW());
+		out.writeInt(getH());
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException {
+		int x = in.readInt();
+		int y = in.readInt();
+		int w = in.readInt();
+		int h = in.readInt();
+		Ellipse2D s = new Ellipse2D.Double(x, y, w, h);
+		region = s;
 	}
 }
