@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.awt.geom.Rectangle2D;
 import java.util.Enumeration;
 import java.util.Vector;
 
@@ -80,14 +81,7 @@ public class Mediator {
 		int dx, dy, dw, dh;
 		int rx=rect.getX(), ry=rect.getY(), rw=rect.getW(), rh=rect.getH();
 		rect.setSize(x-rx, y-ry);
-		if (rw < 0) {
-			rx += rw;
-			rw *= -1;
-		}
-		if (rh < 0) {
-			ry += rh;
-			rh *= -1;
-		}
+		rect.setRegion();
 		clearSelectedDrawings();
 		for (int i = drawings.size()-1; i >= 0; i--) {
 			MyDrawing d = drawings.elementAt(i);
@@ -100,8 +94,7 @@ public class Mediator {
 				dy += dh;
 				dh *= -1;
 			}
-
-			if (dx > rx && dy> ry && dx+dw <= rx+rw && dy+dh <= ry+rh) {
+			if (rect.region.intersects(dx, dy, dw, dh)) {
 				selectedDrawings.add(d);
 				d.setSelected(true);
 			} else {

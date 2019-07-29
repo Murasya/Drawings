@@ -29,11 +29,13 @@ public class File {
 		        ObjectInputStream in = new ObjectInputStream(fin);
 
 		        v = (Vector<MyDrawing>)in.readObject();
+		        in.close();
 		        fin.close();
 		        mediator.drawings = v;
 		        mediator.repaint();
 			}
 	    } catch (Exception ex) {
+	    	System.out.println(ex);
 	    }
 		return v;
 	}
@@ -51,9 +53,11 @@ public class File {
 		        out.writeObject(v);
 		        out.flush();
 
+		        out.close();
 		        fout.close();
 	    	}
 	    } catch (Exception ex) {
+	    	System.out.println(ex);
 	    }
 	}
 }

@@ -78,6 +78,7 @@ public class MyOval extends MyDrawing{
 			h *= -1;
 		}
 		region = new Ellipse2D.Float(x, y, w, h);
+		System.out.println(region);
 	}
 
 	private void writeObject(ObjectOutputStream out) throws IOException {
