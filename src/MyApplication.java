@@ -35,6 +35,9 @@ public class MyApplication extends JFrame
 		MenuBar menuBar = new MenuBar(stateManager);
 		setJMenuBar(menuBar);
 
+		ToolBar toolBar = new ToolBar(stateManager);
+		jp.add(toolBar);
+
 		SelectButton selectButton = new SelectButton(stateManager);
 		jp.add(selectButton);
 

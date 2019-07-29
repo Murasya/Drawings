@@ -9,12 +9,17 @@ public class Mediator {
 	Vector<MyDrawing> selectedDrawings;
 	Vector<MyDrawing> buffer;
 	MyRectangle rect;
+	Vector<Vector<MyDrawing>> history;
+	private int history_index;
 
 	public Mediator(MyCanvas canvas) {
 		this.canvas = canvas;
 		drawings = new Vector<MyDrawing>();
 		selectedDrawings = new Vector<MyDrawing>();
 		buffer = new Vector<MyDrawing>();
+		history = new Vector<Vector<MyDrawing>>();
+		history.add(new Vector<MyDrawing>());
+		history_index = 0;
 	}
 
 	public Enumeration<MyDrawing> drawingsElements() {
@@ -23,6 +28,7 @@ public class Mediator {
 
 	public void addDrawing(MyDrawing d) {
 		drawings.add(d);
+		addHistory();
 	}
 
 	public void removeDrawing(Vector<MyDrawing> ds) {
@@ -185,5 +191,44 @@ public class Mediator {
 			for (MyDrawing d : selectedDrawings)
 				d.setDashed(b);
 		}
+	}
+
+	public void addHistory() {
+		Vector<MyDrawing> his = new Vector<MyDrawing>();
+		history_index += 1;
+		for (MyDrawing drawing : drawings) {
+			his.add(drawing);
+		}
+		history.add(history_index, (Vector<MyDrawing>)his.clone());
+		while(true) {
+			try {
+				history.remove(history_index+1);
+			} catch (Exception e) {
+				break;
+			}
+		}
+		System.out.println(history);
+		System.out.println(his);
+	}
+
+	public void undo() {
+		if (history_index != 0) {
+			history_index -= 1;
+			drawings = (Vector<MyDrawing>) history.elementAt(history_index).clone();
+		}
+
+		System.out.println(history);
+		System.out.println(drawings);
+		repaint();
+	}
+
+	public void redo() {
+		if (history_index < history.size()-1) {
+			history_index += 1;
+			drawings = (Vector<MyDrawing>) history.elementAt(history_index).clone();
+		}
+		System.out.println(history);
+		System.out.println(history_index);
+		repaint();
 	}
 }
