@@ -1,6 +1,5 @@
 
 import java.awt.Color;
-import java.awt.geom.Rectangle2D;
 import java.util.Enumeration;
 import java.util.Vector;
 
