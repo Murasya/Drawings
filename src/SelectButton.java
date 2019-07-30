@@ -42,14 +42,15 @@ public class SelectButton extends JButton {
 		public void mouseDrag(int x, int y) {
 			int dx = x - this.x;
 			int dy = y - this.y;
-			System.out.println(selectState);
 			if (selectState != -1) {
 				this.x = x; this.y = y;
-				if (selectState != 8)
-					stateManager.getMediator().getSelectedDrawing().firstElement().resize(x, y, selectState);
-				else
-					for (MyDrawing d : stateManager.getMediator().getSelectedDrawing())
+				System.out.println(selectState);
+				for (MyDrawing d : stateManager.getMediator().getSelectedDrawing()) {
+					if (selectState != 8)
+						d.resize(x, y, selectState);
+					else
 						d.move(dx, dy);
+				}
 			} else {
 				stateManager.getMediator().setRectangle(x, y);
 			}
