@@ -51,17 +51,20 @@ public class Mediator {
 		canvas.repaint();
 	}
 
-	public boolean setSelected(int x, int y) {
+	public int setSelected(int x, int y) {
 		MyDrawing d;
+		int j;
 		boolean isSelect = false;
-		if (!selectedDrawings.isEmpty())
-			for (MyDrawing sd : selectedDrawings)
-				if (sd.contains(x, y))
-					return true;
+		if (!selectedDrawings.isEmpty()) {
+			for (MyDrawing sd : selectedDrawings) {
+				if ((j = sd.contains(x, y)) != -1)
+					return j;
+			}
+		}
 		clearSelectedDrawings();
 		for (int i = drawings.size()-1; i >= 0; i--) {
 			d = drawings.elementAt(i);
-			if (d.contains(x, y) && !isSelect) {
+			if (d.contains(x, y)==8 && !isSelect) {
 				selectedDrawings.add(d);
 				d.setSelected(true);
 				isSelect = true;
@@ -70,15 +73,14 @@ public class Mediator {
 		if (!isSelect) {
 			rect = new MyRectangle(x, y, 0, 0);
 			addDrawing(rect);
-
 		}
 		System.out.println(selectedDrawings);
-		return isSelect;
+		return isSelect ? 8:-1;
 	}
 
 	public void setRectangle(int x, int y) {
 		int dx, dy, dw, dh;
-		int rx=rect.getX(), ry=rect.getY(), rw=rect.getW(), rh=rect.getH();
+		int rx=rect.getX(), ry=rect.getY();
 		rect.setSize(x-rx, y-ry);
 		rect.setRegion();
 		clearSelectedDrawings();

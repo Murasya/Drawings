@@ -42,8 +42,12 @@ public class MyRectangle extends MyDrawing
 		g2.drawRect(x, y, w, h);
 	}
 
-	public boolean contains(int x, int y) {
-		return region.contains(x, y);
+	public int contains(int x, int y) {
+		int i = super.contains(x, y);
+		if (i == -1 && region.contains(x, y))
+			return 8;
+		else
+			return i;
 	}
 	public void setRegion() {
 		int x = getX();
