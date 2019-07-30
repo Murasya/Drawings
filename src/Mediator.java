@@ -23,6 +23,7 @@ public class Mediator {
 
 	public void addDrawing(MyDrawing d) {
 		drawings.add(d);
+		repaint();
 	}
 
 	public void removeDrawing(Vector<MyDrawing> ds) {

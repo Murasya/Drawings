@@ -10,6 +10,7 @@ public class MenuBar extends JMenuBar{
 	JMenu file = new JMenu("File");
 	JMenuItem open = new JMenuItem("Open");
 	JMenuItem save = new JMenuItem("Save");
+	JMenuItem image = new JMenuItem("Insert Image");
 	File f;
 
 	public MenuBar(StateManager stateManager) {
@@ -26,6 +27,13 @@ public class MenuBar extends JMenuBar{
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				f.fileOutput();
+			}
+		});
+		file.add(image);
+		image.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyImage md = new MyImage(f.imageInput());
+				stateManager.addDrawing(md);
 			}
 		});
 	}
