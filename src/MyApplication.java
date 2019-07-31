@@ -50,6 +50,9 @@ public class MyApplication extends JFrame
 		ArcButton arcButton = new ArcButton(stateManager);
 		jp.add(arcButton);
 
+		TextInputButton textInputButton = new TextInputButton(stateManager);
+		jp.add(textInputButton);
+
 		DropShadowBox dropShadowBox = new DropShadowBox(stateManager);
 		jp.add(dropShadowBox);
 

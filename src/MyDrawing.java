@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Shape;
+import java.awt.Rectangle;
 import java.io.Serializable;
 
 public abstract class MyDrawing implements Cloneable, Serializable
@@ -60,7 +61,25 @@ public abstract class MyDrawing implements Cloneable, Serializable
 		this.isSelected = isSelected;
 	}
 
-	public abstract boolean contains(int x, int y);
+	public int contains(int x, int y) {
+		if (new Rectangle(this.x+w/2-SIZE/2, this.y-SIZE/2, SIZE, SIZE).contains(x, y))
+			return 1;
+		if (new Rectangle(this.x-SIZE/2, this.y+h/2-SIZE/2, SIZE, SIZE).contains(x, y))
+			return 7;
+		if (new Rectangle(this.x+w/2-SIZE/2, this.y+h-SIZE/2, SIZE, SIZE).contains(x, y))
+			return 5;
+		if (new Rectangle(this.x+w-SIZE/2, this.y+h/2-SIZE/2, SIZE, SIZE).contains(x, y))
+			return 3;
+		if (new Rectangle(this.x-SIZE/2, this.y-SIZE/2, SIZE, SIZE).contains(x, y))
+			return 0;
+		if (new Rectangle(this.x+w-SIZE/2, this.y-SIZE/2, SIZE, SIZE).contains(x, y))
+			return 2;
+		if (new Rectangle(this.x-SIZE/2, this.y+h-SIZE/2, SIZE, SIZE).contains(x, y))
+			return 6;
+		if (new Rectangle(this.x+w-SIZE/2, this.y+h-SIZE/2, SIZE, SIZE).contains(x, y))
+			return 4;
+		return -1;
+	}
 	public abstract void setRegion();
 
 	public void move(int dx, int dy) {
@@ -150,5 +169,26 @@ public abstract class MyDrawing implements Cloneable, Serializable
 			e.printStackTrace();
 		}
 		return d;
+	}
+
+
+	public void resize(int dx, int dy, int resizeMode) {
+		int gx, gy, gw, gh;
+		switch(resizeMode){
+	        case 0: gx = dx; gy = dy; gw = w+x-dx; gh = h+y-dy; break;
+	        case 1: gx = x; gy = dy; gw = w; gh = h+y-dy; break;
+	        case 2: gx = x; gy = dy; gw = dx-x; gh = h+y-dy; break;
+	        case 3: gx = x; gy = y; gw = dx-x; gh = h; break;
+	        case 4: gx = x; gy = y; gw = dx-x; gh = dy-y; break;
+	        case 5: gx = x; gy = y; gw = w; gh = dy-y; break;
+	        case 6: gx = dx; gy = y; gw = w+x-dx; gh = dy-y; break;
+	        case 7: gx = dx; gy = y; gw = w+x-dx; gh = h; break;
+	        default:
+	        	gx = x; gy = y; gw = w; gh = h;
+	    }
+	    x = gx;
+	    y = gy;
+	    w = gw;
+	    h = gh;
 	}
 }

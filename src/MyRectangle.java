@@ -2,9 +2,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.Shape;
 
 public class MyRectangle extends MyDrawing
 {
+	Shape region;
 	public MyRectangle(int xpt, int ypt) {
 		super(xpt, ypt);
 	}
@@ -40,10 +42,26 @@ public class MyRectangle extends MyDrawing
 		g2.drawRect(x, y, w, h);
 	}
 
-	public boolean contains(int x, int y) {
-		return region.contains(x, y);
+	public int contains(int x, int y) {
+		int i = super.contains(x, y);
+		if (i == -1 && region.contains(x, y))
+			return 8;
+		else
+			return i;
 	}
 	public void setRegion() {
-		region = new Rectangle(getX(), getY(), getW(), getH());
+		int x = getX();
+		int y = getY();
+		int w = getW();
+		int h = getH();
+		if (w < 0) {
+			x += w;
+			w *= -1;
+		}
+		if (h < 0) {
+			y += h;
+			h *= -1;
+		}
+		region = new Rectangle(x, y, w, h);
 	}
 }
