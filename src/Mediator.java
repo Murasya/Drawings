@@ -28,7 +28,6 @@ public class Mediator {
 
 	public void addDrawing(MyDrawing d) {
 		drawings.add(d);
-		addHistory();
 	}
 
 	public void removeDrawing(Vector<MyDrawing> ds) {
@@ -117,23 +116,32 @@ public class Mediator {
 	public void setSelectedDrawing(Vector<MyDrawing> d) {
 		this.selectedDrawings = d;
 	}
+	public void setSelectedDrawing() {
+		for(MyDrawing d : drawings) {
+			if (d.getSelected())
+				selectedDrawings.add(d);
+		}
+	}
 
 	public void setFillColor(Color c) {
 		if (!selectedDrawings.isEmpty()) {
 			for (MyDrawing d : selectedDrawings)
 				d.setFillColor(c);
+			addHistory();
 		}
 	}
 	public void setLineColor(Color c) {
 		if (!selectedDrawings.isEmpty()) {
 			for (MyDrawing d : selectedDrawings)
 				d.setLineColor(c);
+			addHistory();
 		}
 	}
 	public void setLineWidth(float lineWidth) {
 		if (!selectedDrawings.isEmpty()) {
 			for (MyDrawing d : selectedDrawings)
 				d.setLineWidth(lineWidth);
+			addHistory();
 		}
 	}
 	public void clearBuffer() {
@@ -171,6 +179,7 @@ public class Mediator {
 			}
 			repaint();
 		}
+		addHistory();
 	}
 
 	public void setDropShadow(boolean b) {
@@ -191,7 +200,7 @@ public class Mediator {
 		Vector<MyDrawing> his = new Vector<MyDrawing>();
 		history_index += 1;
 		for (MyDrawing drawing : drawings) {
-			his.add(drawing);
+			his.add(drawing.clone());
 		}
 		history.add(history_index, (Vector<MyDrawing>)his.clone());
 		while(true) {

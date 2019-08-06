@@ -44,6 +44,7 @@ public class TextInputButton extends JButton {
 			String text = textInputBox.getText();
 			myTextBox = new MyTextBox(text, x, y, 0, 0);
 			stateManager.addDrawing(myTextBox);
+			stateManager.getMediator().repaint();
 		}
 	}
 }

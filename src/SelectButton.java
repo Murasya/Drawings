@@ -21,7 +21,7 @@ public class SelectButton extends JButton {
 	class SelectState implements State {
 		StateManager stateManager;
 		private int x, y;
-		private int selectState;
+		int selectState;
 
 		public SelectState(StateManager stateManager) {
 			this.stateManager = stateManager;

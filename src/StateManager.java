@@ -79,6 +79,7 @@ public class StateManager {
 	public void mouseUp(int x, int y) {
 		if (state != null)
 			state.mouseUp(x, y);
+		getMediator().addHistory();
 		canvas.repaint();
 	}
 	public void keyDown(int keyCode) {
